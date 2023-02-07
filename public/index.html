@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Starlit | Team Aerial </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- header font -->
+  <link href="//fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css">
+  
+  <!-- body font -->
+  <link href="//fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+<!-- css connection -->
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	
+	<div class="direct">
+  <div class="container">
+  
+    <div class="main">
+  
+      <h1 class="star">Starlit</h1>
+      
+      <div id="error"></div>
+<div class="mainform">
+      <form action="no-js" method="get" id="unblocker-form">
+        <p class="enter">
+          Enter Url: 
+          <input class="input1" type="text" id="url" name="url" autofocus="autofocus" />
+          <input class="submit" type="submit" value="Go" />
+        </p>
+
+      </form>
+	  </div>
+	</div>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		
+		$('unblocker-form').onsubmit = function(){
+			var url = $('url').value;
+			if(url.substr(0,4) != "http"){
+				url = "http://" + url;
+			}
+			window.location = location.protocol + '//' + location.host + '/proxy/' + url;
+			return false;
+		};
+		
+		function checkError(){
+			var search = window.location.search;
+			var start = search.indexOf('error=');
+			if(start > -1){
+				var stop = search.indexOf('&', start);
+				if(stop == -1){ stop = undefined; }
+				// +6 for "error="
+				var err = search.substr(start+6, stop);
+                var $error = $('error');
+				$error.innerText = $error.textContent = decodeURIComponent(err);
+				$error.style.display = "block";
+			}
+		}
+    
+		window.onload = function() { 
+			$('url').focus(); 
+			checkError(); 
+		}
+	</script>
+  
+  <script src="design.js"></script>
+  <script src="menu.js"></script>
+  <footer>
+	<p class="footext">Created By Team Aerial | With Youtube.js | Made By The Creators Of AerialLibrary</p>
+  </footer>
+</body>
+</html>
